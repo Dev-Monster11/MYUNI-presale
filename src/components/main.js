@@ -60,7 +60,7 @@ function Main(props) {
         },
     ]);
     const [busd, setBusd] = useState(0);
-    const presaleContract = GetContract("0xDB2967863cD12Be343D40Cb08ec96539E1CDee0b", mainAbi);
+    const presaleContract = GetContract("0x7e09f95016bc2f71d0e1cfe66835e4b25248e5c1", mainAbi);
     const busdContract = GetContract("0xC20B7806aE386ACe91b529076867E8eFd6a09D22", busdAbi);
     const convert = (val) => {
         return ethers.utils.formatUnits(val, 18).toString() * 1;
@@ -78,7 +78,7 @@ function Main(props) {
             alert("connect wallet first");
             return;
         }
-        let buffer = await busdContract.approve("0xDB2967863cD12Be343D40Cb08ec96539E1CDee0b", (busd * Math.pow(10, 18)).toString());
+        let buffer = await busdContract.approve("0x7e09f95016bc2f71d0e1cfe66835e4b25248e5c1", (busd * Math.pow(10, 18)).toString());
         await buffer.wait();
         await presaleContract.userDeposit((busd * Math.pow(10, 18)).toString());
     };
