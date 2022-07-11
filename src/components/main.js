@@ -280,7 +280,15 @@ function Main(props) {
                                 </Stepper>
                             </Box>
 
-                            <Box sx={{ mt: 3, display: presaleStep === 1 ? "flex" : "none", justifyContent: "center" }}>
+                            <Box
+                                sx={{
+                                    mt: 3,
+                                    display: presaleStep === 1 ? "flex" : "none",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    flexFlow: "column",
+                                }}
+                            >
                                 <FormControl>
                                     <OutlinedInput
                                         value={busd}
@@ -304,7 +312,7 @@ function Main(props) {
                                     variant="contained"
                                     disableElevation
                                     onClick={handleBuy}
-                                    sx={{ mt: 2, backgroundColor: "#4d5f6b", "&:hover": { backgroundColor: "#04070c" } }}
+                                    sx={{ width: 100, mt: 2, backgroundColor: "#4d5f6b", "&:hover": { backgroundColor: "#04070c" } }}
                                 >
                                     Buy
                                 </Button>
