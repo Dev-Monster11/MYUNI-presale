@@ -83,7 +83,11 @@ function Main(props) {
         await presaleContract.userDeposit((busd * Math.pow(10, 18)).toString());
     };
     const handleWithdraw = () => {
-        if (!account) alert("connect wallet first");
+        if (!account) {
+            alert("connect wallet first");
+            return;
+        }
+        presaleContract.userWithdrawTokens();
     };
 
     const setValues = async () => {
@@ -276,35 +280,36 @@ function Main(props) {
                                 </Stepper>
                             </Box>
 
-                            <Box sx={{ mt: 3, display: presaleStep === 1 ? "flex" : "none" }}>
-                                <Box sx={{ width: { xs: 110, sm: 160 }, float: "left" }} component="img" src={busdLogo} alt="BUSD" />
-                                <Box sx={{ my: "auto", ml: 3, textAlign: "center" }}>
-                                    <FormControl>
-                                        <OutlinedInput
-                                            value={busd}
-                                            sx={{
-                                                backgroundColor: "white",
-                                                "& .MuiOutlinedInput-notchedOutline legend": { display: "none" },
-                                                "& .MuiOutlinedInput-notchedOutline": { display: "none" },
-                                            }}
-                                            onChange={(e) => {
-                                                setBusd(e.target.value);
-                                            }}
-                                            endAdornment={<InputAdornment position="end">BUSD</InputAdornment>}
-                                        />
-                                    </FormControl>
-
-                                    <Button
-                                        variant="contained"
-                                        disableElevation
-                                        onClick={handleBuy}
-                                        sx={{ mt: 2, backgroundColor: "#4d5f6b", "&:hover": { backgroundColor: "#04070c" } }}
-                                    >
-                                        Buy
-                                    </Button>
-                                </Box>
+                            <Box sx={{ mt: 3, display: presaleStep === 1 ? "flex" : "none", justifyContent: "center" }}>
+                                <FormControl>
+                                    <OutlinedInput
+                                        value={busd}
+                                        sx={{
+                                            backgroundColor: "white",
+                                            "& .MuiOutlinedInput-notchedOutline legend": { display: "none" },
+                                            "& .MuiOutlinedInput-notchedOutline": { display: "none" },
+                                        }}
+                                        onChange={(e) => {
+                                            setBusd(e.target.value);
+                                        }}
+                                        endAdornment={
+                                            <InputAdornment position="end">
+                                                <Box sx={{ width: 20, float: "left" }} component="img" src={busdLogo} alt="BUSD" />
+                                                &nbsp;BUSD
+                                            </InputAdornment>
+                                        }
+                                    />
+                                </FormControl>
+                                <Button
+                                    variant="contained"
+                                    disableElevation
+                                    onClick={handleBuy}
+                                    sx={{ mt: 2, backgroundColor: "#4d5f6b", "&:hover": { backgroundColor: "#04070c" } }}
+                                >
+                                    Buy
+                                </Button>
                             </Box>
-                            <Box sx={{ justifyContent: "center", mt: 3, display: presaleStep === 2 ? "flex" : "none" }}>
+                            <Box sx={{ justifyContent: "center", mt: 3, display: presaleStep > 1 ? "flex" : "none" }}>
                                 <Button
                                     variant="contained"
                                     disableElevation
