@@ -97,6 +97,10 @@ function Main(props) {
             setPresaleInfo(val);
             setLockDate([
                 {
+                    label: "Pre-sale end",
+                    description: convertDate(val.presale_end * 1000),
+                },
+                {
                     label: "25%",
                     description: convertDate(val.presale_end * 1000 + 30 * 24 * 60 * 60 * 1000),
                 },
